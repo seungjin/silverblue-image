@@ -27,3 +27,17 @@ jobs:
           ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>> \
           -t ghcr.io/seungjin/silverblue-image:latest
           ​
+workflows:
+  commit:
+    jobs:
+      - build
+  daily:
+    triggers:
+      - schedule:
+          cron: "30 19 * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - build
