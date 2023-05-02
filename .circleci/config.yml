@@ -5,6 +5,20 @@ parameters:
     type: string
     default: "ci-<<pipeline.number>>"
 
+workflows:
+  commit:
+    jobs:
+      - build
+  daily:
+    triggers:
+      - schedule:
+          cron: "15 15 * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - build
 
 jobs:
   build:
@@ -25,21 +39,5 @@ jobs:
           docker push ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>>
       - run: |
           docker buildx imagetools create \
-          ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>> \
-          -t ghcr.io/seungjin/silverblue-image:latest
-
+          ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>> -t ghcr.io/seungjin/silverblue-image:latest
           ​
-workflows:
-  commit:
-    jobs:
-      - build
-  daily:
-    triggers:
-      - schedule:
-          cron: "15 15 * * *"
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - build
