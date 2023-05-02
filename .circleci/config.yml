@@ -24,6 +24,6 @@ jobs:
           docker push ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>>
       - run: |
           docker buildx imagetools create \
-          seungjin/silverblue-image:<<pipeline.parameters.image-tag>> \
+          ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>> \
           -t ghcr.io/seungjin/silverblue-image:latest
 
