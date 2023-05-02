@@ -1,0 +1,26 @@
+version: 2.1
+
+parameters:
+  image-tag:
+    type: string
+    default: "ci-<<pipeline.number>>"
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2204:current
+      #docker_layer_caching: true
+    resource_class: large
+    steps:
+      - checkout
+      - run: |
+          sudo apt-get install -y docker-buildx-plugin
+      - run: |
+          echo "$GITHUB_ACCESS_KEY" | docker login -u seungjin --password-stdin ghcr.io
+      - run: |
+          docker buildx build -o type=registry -t ghcr.io/silverblue-image:<<pipeline.parameters.image-tag>> .
+      - run: |
+          docker buildx imagetools create \
+          seungjin/silverblue-image:<<pipeline.parameters.image-tag>> \
+          -t ghcr.io/seungjin/silverblue-image:latest
+
