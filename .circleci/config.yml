@@ -18,8 +18,10 @@ jobs:
       - run: |
           echo "$GITHUB_ACCESS_KEY" | docker login -u seungjin --password-stdin ghcr.io
       - run: |
-          docker buildx build -o type=registry -f Containerfile \
+          docker build -f Containerfile \
           -t ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>> .
+      - run: |
+	  docker push ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>>
       - run: |
           docker buildx imagetools create \
           seungjin/silverblue-image:<<pipeline.parameters.image-tag>> \
