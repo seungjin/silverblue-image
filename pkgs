@@ -13,6 +13,7 @@ fd-find
 feh 
 font-manager
 htop
+i3lock 
 jq 
 kitty
 kitty-terminfo 
@@ -54,6 +55,7 @@ vim
 volumeicon
 w3m 
 w3m-img
+wireguard-tools
 xinput
 xsel
 xset
