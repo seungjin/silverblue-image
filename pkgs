@@ -8,6 +8,7 @@ brightnessctl
 buildah
 dmenu 
 dunst
+emacs
 fd-find 
 feh 
 font-manager
@@ -50,7 +51,6 @@ trash-cli
 tree 
 unzip
 vim
-vnstat 
 volumeicon
 w3m 
 w3m-img
