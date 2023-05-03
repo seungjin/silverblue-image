@@ -26,7 +26,7 @@ jobs:
           docker buildx imagetools create \
           -t ghcr.io/seungjin/silverblue-image:latest \
           ghcr.io/seungjin/silverblue-image:<<pipeline.parameters.image-tag>>
-          ​
+
 workflows:
   commit:
     jobs:
