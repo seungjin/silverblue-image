@@ -7,8 +7,7 @@ blueman
 brightnessctl 
 buildah
 dmenu 
-dunst 
-emacs 
+dunst
 fd-find 
 feh 
 font-manager
@@ -55,7 +54,6 @@ vnstat
 volumeicon
 w3m 
 w3m-img
-wireguard-tools
 xinput
 xsel
 xset
