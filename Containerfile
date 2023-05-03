@@ -19,7 +19,7 @@ RUN rpm-ostree install $(cat /tmp/pkgs)
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer
-
+    
 # nvidia driver 
 #nvidia non-free driver
 #RUN rpm-ostree install kmod-nvidia xorg-x11-drv-nvidia 
@@ -35,6 +35,7 @@ RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-os
 #RUN firewall-cmd --permanent --zone=public --add-port=432/tcp
 
 COPY usr /usr
+RUN mkdir /usr/lib/vagrant
 
 #RUN mv /usr/share/ibus/component/hangul.xml /usr/share/ibus/component/hangul.xml.original
 #COPY usr/share/ibus/component/hangul.xml /usr/share/ibus/component/hangul.xml 
