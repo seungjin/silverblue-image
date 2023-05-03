@@ -12,6 +12,8 @@ RUN rpm-ostree install \
     https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+RUN mkdir -p /var/lib && ln -s /usr/lib/alternatives /var/lib/alternatives
+
 COPY pkgs /tmp/pkgs
 RUN rpm-ostree install $(cat /tmp/pkgs)
 
@@ -36,6 +38,8 @@ COPY usr /usr
 
 #RUN mv /usr/share/ibus/component/hangul.xml /usr/share/ibus/component/hangul.xml.original
 #COPY usr/share/ibus/component/hangul.xml /usr/share/ibus/component/hangul.xml 
+
+RUN rm -fr /var/lib
 
 RUN rpm-ostree cleanup -m && ostree container commit
 
