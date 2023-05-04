@@ -18,7 +18,8 @@ COPY pkgs /tmp/pkgs
 RUN rpm-ostree install $(cat /tmp/pkgs)
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
-    systemctl enable rpm-ostreed-automatic.timer
+    systemctl enable rpm-ostreed-automatic.timer && \
+    systemctl enable flatpak-automatic.timer 
     
 # nvidia driver 
 #nvidia non-free driver
