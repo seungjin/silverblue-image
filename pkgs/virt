@@ -1,0 +1,10 @@
+guestfs-tools 
+libguestfs-tools 
+libvirt 
+python3-libguestfs 
+qemu-kvm-core 
+virt-install
+virt-manager
+virt-top
+virt-viewer 
+vnstat 
