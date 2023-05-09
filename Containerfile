@@ -17,7 +17,6 @@ RUN mkdir -p /var/lib && ln -s /usr/lib/alternatives /var/lib/alternatives
 COPY pkgs /tmp/pkgs
 RUN rpm-ostree install $(cat /tmp/pkgs/base)
 RUN rpm-ostree install $(cat /tmp/pkgs/virt)
-RUN rpm-ostree install $(cat /tmp/pkgs/nvidia)
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer
